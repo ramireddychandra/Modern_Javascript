@@ -26,7 +26,7 @@ arr.forEach(function (elements, i, array) {
   console.log(elements, i, array);
 });
 
-onst arr = ['apple', 'bappaya', 'orange'];
+const arrs = ['apple', 'bappaya', 'orange'];
 arr.forEach(function (
   elements /* iterative element*/,
   i /*index*/,
