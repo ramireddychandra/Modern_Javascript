@@ -1,0 +1,29 @@
+const movements = [200, -200, 340, -300, -20, 50, 400, -460];
+// // Includes --->Exact Value
+// console.log(movements.includes(-300));
+
+// console.log(movements.some(mov => mov === -300));
+
+// // Some ----> checks Atleast one value is true
+// console.log(movements.some(mov => mov > 350));
+// // some and every
+// console.log(movements);
+
+// EQUALITY
+console.log(movements.includes(-130));
+
+// SOME: CONDITION
+console.log(movements.some(mov => mov === -130));
+
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
+
+// EVERY
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+// Separate callback
+const deposit = mov => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
