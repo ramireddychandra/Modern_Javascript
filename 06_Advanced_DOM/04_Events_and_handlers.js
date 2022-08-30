@@ -55,32 +55,32 @@ console.log(document.getElementsByClassName('btn'));
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 //Creating Element ....
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-// message.textContent = 'Hi i am chandu';
-message.innerHTML =
-  'We used Cookiee  for improving personality and functionality. <button class="btn btn--close-cookie"> Got it </button>';
-// header.prepend(message);
-header.append(message);
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// // message.textContent = 'Hi i am chandu';
+// message.innerHTML =
+//   'We used Cookiee  for improving personality and functionality. <button class="btn btn--close-cookie"> Got it </button>';
+// // header.prepend(message);
+// header.append(message);
 
-// Actually this message object will apperas at one place if we want at twice then we have to use cloneNode() as below...
-// header.prepend(message.cloneNode(true));
-header.before(message);
-header.after(message);
+// // Actually this message object will apperas at one place if we want at twice then we have to use cloneNode() as below...
+// // header.prepend(message.cloneNode(true));
+// header.before(message);
+// header.after(message);
 // console.log(message);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // Deleting Element
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', function () {
-    // New-method to delete
-    // message.remove();
+// document
+//   .querySelector('.btn--close-cookie')
+//   .addEventListener('click', function () {
+//     // New-method to delete
+//     // message.remove();
 
-    //  Other method:
-    message.parentElement.removeChild(message);
-  });
+//     //  Other method:
+//     message.parentElement.removeChild(message);
+//   });
 
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////
@@ -88,21 +88,21 @@ document
 ////////////////////////////////////////////////////
 //   STYLES---
 
-message.style.backgroundColor = '#37383d';
-message.style.width = '100%';
+// message.style.backgroundColor = '#37383d';
+// message.style.width = '100%'; // added in the inline style ...
 
-console.log(message.style.height); // It can not visible
-console.log(message.style.width); // Visiable only inline style..
+// console.log(message.style.height); // It can not visible
+// console.log(message.style.width); // Visiable only inline style..
 
-// If we want to get the extrenal css attributes/values..
+// // If we want to get the extrenal css attributes/values..
 
-console.log(getComputedStyle(message).height);
-message.style.height =
-  Number.parseInt(getComputedStyle(message).height) + 40 + 'px';
-console.log(getComputedStyle(message).height);
+// console.log(getComputedStyle(message).height);
+// message.style.height =
+//   Number.parseInt(getComputedStyle(message).height) + 40 + 'px';
+// console.log(getComputedStyle(message).height);
 
 // set-property
-document.documentElement.style.setProperty('--color-primary', 'orange');
+// document.documentElement.style.setProperty('--color-primary', 'orange');
 // document.documentElement.style.setProperty('--color-primary', 'orange');
 
 ///////////////////////////////////////////////////////
@@ -138,3 +138,57 @@ logo.classList.contains('c');
 
 // Dont use this
 logo.className = 'Chandu'; // it will override all classname.....
+
+//////////////////////////////////////////////////////
+///////////////////////////////////////////////
+// Implementing Smoothing Scrolling
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const corrd = section1.getBoundingClientRect();
+  console.log(corrd);
+  const current = e.target.getBoundingClientRect();
+  console.log(current); // positions
+
+  console.log(
+    'current_Scrolling (X/Y) : ',
+    window.pageXOffset,
+    window.pageYOffset
+  );
+  console.log(
+    'height / weight : ',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+  //   console.log(corrd.left, window.pageXOffset);
+  //   console.log(corrd.top, window.pageYOffset);
+
+  // Scrolling
+  //   window.scrollTo(
+  //     corrd.left + window.pageXOffset,
+  //     corrd.top + window.pageYOffset
+  //   );
+  // method--2
+  //   window.scrollTo({
+  //     left: corrd.left + window.pageXOffset,
+  //     top: corrd.top + window.pageYOffset,
+  //     behavior: 'smooth',
+  //   });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('AddEventListenor : works good...');
+
+  //   h1.removeEventListener('mouseenter', alertH1);
+};
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000);
+// h1.onmouseenter = function (e) {
+//   alert('AddEventListenor : works good.1..');
+// };
