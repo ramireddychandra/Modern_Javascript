@@ -196,31 +196,111 @@ btnScrollTo.addEventListener('click', function (e) {
 // Event Propogation ...
 // 1)travelling down(capturing)(top-to bottom)
 // 2)travelling up (bubbling)(bottom to top)
-const randInt = (min, max) => Math.floor(Math.random() * max - min + 1 + min);
+// const randInt = (min, max) => Math.floor(Math.random() * max - min + 1 + min);
 
-const randomColor = () =>
-  `rgb(${randInt(0, 255)},${randInt(0, 255)},${randInt(0, 255)})`;
+// const randomColor = () =>
+//   `rgb(${randInt(0, 255)},${randInt(0, 255)},${randInt(0, 255)})`;
 
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('Container :', e.target, e.currentTarget);
-  //   console.log(e.currentTarget == this);
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+//   console.log('Container :', e.target, e.currentTarget);
+//   //   console.log(e.currentTarget == this);
 
-  //   Stop Propogation ... but not a good idea to stop
-  //   e.stopPropagation();
-});
+//   //   Stop Propogation ... but not a good idea to stop
+//   //   e.stopPropagation();
+// });
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// //   console.log('nav_items :', e.target, e.currentTarget);
+
+//   //   e.stopPropagation();
+// });
+// document.querySelector('.nav').addEventListener(
+//   'click',
+//   function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log('nav :', e.target, e.currentTarget);
+//   },
+//   true
+// );
+/////////////////////////////////////////
+////////////////////////////////////////////
+////////////////////////////////////////////////
+// event delegation
+
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     // console.log('link');
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     // console.log(e.target);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
 document.querySelector('.nav__links').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('nav_items :', e.target, e.currentTarget);
-
-  //   e.stopPropagation();
+  // console.log(e.target);
+  e.preventDefault();
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
 });
-document.querySelector('.nav').addEventListener(
-  'click',
-  function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log('nav :', e.target, e.currentTarget);
-  },
-  true
-);
-//
+
+/////////////////////////////////////////////
+// ////////////////////////////////////////////////
+// // DOM traversing ...
+
+// const h1 = document.querySelector('h1');
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+// console.log(h1.children);
+// // going downward child
+// // console.log(h1);
+// h1.firstElementChild.style.color = 'white';
+// h1.lastElementChild.style.color = 'white';
+// ////////////////////////
+// // going upward parent
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+// h1.closest('header').style.backgroundColor = 'red';
+// // going Sideways :siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+
+// console.log(h1.nextSibling);
+// console.log(h1.previousSibling);
+
+// // h1.nextElementSibling.style.color = 'green';
+// console.log(h1.parentElement.children);
+
+////////////////////////////////////////////////
+///////////////////////////////////////////////////
+// tabbed Component. . .
+const tabs = document.querySelectorAll('.operations__tab');
+// console.log(tabs);
+const tab_container = document.querySelector('.operations__tab-container');
+const tabs_content = document.querySelectorAll('.operations__content');
+console.log(tabs_content);
+
+tab_container.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  // console.log(clicked);
+  if (!clicked) return;
+  tabs.forEach(function (el) {
+    el.classList.remove('operations__tab--active');
+  });
+  clicked.classList.add('operations__tab--active');
+  // const data = clicked.getAttribute('data-tab'));
+  // or
+  // console.log(clicked.dataset.tab);
+  tabs_content.forEach(el =>
+    el.classList.remove('operations__content--active')
+  );
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+  // console.log(tabs_content);
+});
