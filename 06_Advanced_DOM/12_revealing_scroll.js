@@ -397,3 +397,25 @@ headerObserver.observe(header);
 ///////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
+
+// Reveal Sections ....
+const allsection = document.querySelectorAll('.section');
+// console.log(allsection);
+const reavelsec = function (entries, observer) {
+  const [entry] = entries;
+  //   console.log(entry);
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+  //   entr.classList.remove('section--hidden');
+};
+const SectionObserver = new IntersectionObserver(reavelsec, {
+  root: null,
+  threshold: 0.15,
+});
+
+allsection.forEach(function (section) {
+  SectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
