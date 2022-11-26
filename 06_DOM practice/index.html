@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript practice</title>
+    <script src="index.js"></script>
+  </head>
+  <body onload="createList()">
+    <button
+      onclick="modifyArray()
+    "
+    >
+      Add Edureka for Student
+    </button>
+
+    <button onclick="modifyArray('pop')">Pop</button>
+    <button
+      onclick="modifyArray('push',prompt('enter name'),prompt('enter age'))"
+    >
+      PUSH
+    </button>
+    <button
+      onclick="modifyArray('slice',prompt('enter start Index'),prompt('Second Index'))"
+    >
+      SLICE
+    </button>
+    <button
+      onclick="modifyArray('splice',prompt('enter start Index'),prompt('Second Index'))"
+    >
+      SPLICE
+    </button>
+    <input type="text" onchange="changeHandle(event)" />
+    <button onclick="modifyArray('find')">Find</button>
+    <button onclick="modifyArray('filter')">Filter</button>
+
+    <!-- dropdown -->
+    <select
+      onchange="getfilterdata(event)"
+      name="filtervia"
+      id="selectfiltervia"
+    >
+      <option value="">filter</option>
+      <option value="age">age</option>
+      <option value="name">Name</option>
+    </select>
+    <ul class="list_items"></ul>
+  </body>
+</html>
