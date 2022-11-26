@@ -64,24 +64,24 @@ const game = {
 
 // practice
 // // 1
-// for (const [key, val] of game.scored.entries()) {
-//   console.log(`Goal ${key + 1} : ${val}`);
-// }
+for (const [key, val] of game.scored.entries()) {
+  console.log(`Goal ${key + 1} : ${val}`);
+}
 
-// // 2
-// let average = 0;
-// for (const odd of Object.values(game.odds)) {
-//   average += odd;
-// }
-// console.log(average / Object.values(game.odds).length);
-// // 3
+// 2
+let average = 0;
+for (const odd of Object.values(game.odds)) {
+  average += odd;
+}
+console.log(average / Object.values(game.odds).length);
+// 3
 
-// for (const [Team, value] of Object.entries(game.odds)) {
-//   const teamStr = Team == "x" ? "draw" : `victory ${game[Team]}`;
-//   console.log(`Odd of ${teamStr}: ${value}`);
-// }
-// 4
+for (const [Team, value] of Object.entries(game.odds)) {
+  const teamStr = Team == "x" ? "draw" : `victory ${game[Team]}`;
+  console.log(`Odd of ${teamStr}: ${value}`);
+}
+4;
 
-// // Odd of victory Bayern Munich: 1.33
+// Odd of victory Bayern Munich: 1.33
 // Odd of draw: 3.25
 // Odd of victory Borrussia Dortmund: 6.5

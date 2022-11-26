@@ -18,7 +18,7 @@ const openingHours = {
 // const day_arr = Object.keys(openingHours);
 // console.log(day_arr);
 // Keys from objects
-const properties = Object.keys(openingHours);
+const properties = Object.keys(openingHours); //['thu','fri ,'sat']
 console.log(properties);
 let openStr = ` we are open on ${properties.length} days : `;
 console.log(openStr);
